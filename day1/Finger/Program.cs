@@ -1,32 +1,18 @@
-﻿using System;
-using Utils;
+﻿
+using Finger;
 
-namespace Finger
-{
-    
-    public class Program
-    {
-        //Entry point to application
-        public static void Main()
-        {
-                Console.WriteLine("What is your status?");
-                string? status = Console.ReadLine();
 
-            if (status != null)
-            {
-            StatusMessage myStatus = new StatusMessage("I'm good", DateTimeOffset.Now);
-                Console.WriteLine($"you said your status was {myStatus.Status} at {myStatus.When:T}");
-            }
-            else
-            {
-                Console.WriteLine("Sorry, cannot have a null status");
-            }
-        }
+var builder = WebApplication
 
-    }
-}
+var app = builder.Build();
 
-namespace Utils
-{
-    public record StatusMessage(string Status, DateTimeOffset When);
-}
+app.MapGet("/status",() => {
+    var status = new StatusMessage("All is good.", System.DateTimeOffset.MaxValue.Now);
+    return status;
+});
+
+app.MapPost("/status",(StatusRequest req) => {
+    return req;
+});
+
+app.Run();
