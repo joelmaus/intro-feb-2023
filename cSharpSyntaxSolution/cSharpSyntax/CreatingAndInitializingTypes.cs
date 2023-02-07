@@ -15,8 +15,8 @@ namespace cSharpSyntax
         {
             // local variabled -- variables that are declared inside a method, or property.
 
-            string myName = "Jeff"; // Initializing.
-            char mi = 'M';
+            string myName = "Joel"; // Initializing.
+            char mi = 'D';
 
             bool isVendor = true;
             // delete me
@@ -25,8 +25,8 @@ namespace cSharpSyntax
 
             Taco food = new Taco();
 
-            Assert.Equal("Jeff", myName);
-            Assert.Equal(53, myAge);
+            Assert.Equal("Joel", myName);
+            Assert.Equal(35, myAge);
             Assert.Equal("Birds", thingy);
         }
 
@@ -37,7 +37,7 @@ namespace cSharpSyntax
             var myAge = 21;
 
             var r = new TransitoryPolicyCommuterRecord();
-            var myName = "Jeff";
+            var myName = "Joel";
 
             var favoriteFood = new Taco();
 
