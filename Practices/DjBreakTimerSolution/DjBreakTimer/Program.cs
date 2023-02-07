@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Xml;
+
 int breakLengthAsNumber;
 TimeSpan songLengthAsTimeSpan;
 
@@ -28,7 +30,6 @@ while (true)
 
 }
 
-Thread.Sleep(3000);
 var totalMinutesSong = songLengthAsTimeSpan.Minutes;
 var totalSecondsSong = songLengthAsTimeSpan.Seconds;
 
@@ -42,10 +43,17 @@ var secondsLeft = beginSongTime % 60;
 Console.WriteLine("\n" + DateTime.Now + " is the start of your break.");
 var currentTime = DateTime.Now;
 
-//currentTime.AddMinutes(minutesLeft);
-//currentTime.AddSeconds(secondsLeft);
+currentTime = currentTime.AddMinutes(minutesLeft);
+currentTime= currentTime.AddSeconds(secondsLeft);
 
 
 Console.WriteLine("Start the song after " + minutesLeft + " minutes and " + secondsLeft + " seconds." );
 //Console.WriteLine("\nYou should start your song at " + currentTime.AddMinutes(minutesLeft) + ":" + currentTime.AddSeconds(secondsLeft));
-
+//int xTime = (( (minutesLeft*60) * 1000) + (secondsLeft * 1000) );
+//while (xTime > 0 )
+//{
+//    Thread.Sleep(1000);
+//    Console.Clear();
+//    xTime = xTime - 1000;
+//    Console.WriteLine(xTime/1000);
+//}
