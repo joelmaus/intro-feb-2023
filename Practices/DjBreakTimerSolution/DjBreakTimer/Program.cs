@@ -40,20 +40,51 @@ var beginSongTime = breakLengthAsNumber - totalMinutesSong - totalSecondsSong;
 var minutesLeft = beginSongTime / 60;
 var secondsLeft = beginSongTime % 60;
 
-Console.WriteLine("\n" + DateTime.Now + " is the start of your break.");
+
 var currentTime = DateTime.Now;
 
 currentTime = currentTime.AddMinutes(minutesLeft);
 currentTime= currentTime.AddSeconds(secondsLeft);
 
 
-Console.WriteLine("Start the song after " + minutesLeft + " minutes and " + secondsLeft + " seconds." );
-//Console.WriteLine("\nYou should start your song at " + currentTime.AddMinutes(minutesLeft) + ":" + currentTime.AddSeconds(secondsLeft));
-//int xTime = (( (minutesLeft*60) * 1000) + (secondsLeft * 1000) );
-//while (xTime > 0 )
-//{
-//    Thread.Sleep(1000);
-//    Console.Clear();
-//    xTime = xTime - 1000;
-//    Console.WriteLine(xTime/1000);
-//}
+Console.WriteLine("Break begins in 2 seconds.\n\n");
+Thread.Sleep(2000);
+Console.BackgroundColor = ConsoleColor.Blue;
+while (minutesLeft >= 0 && secondsLeft >=0)
+{
+    Thread.Sleep(1000);
+    Console.Clear();
+    Console.WriteLine("Begin song in ");
+    Console.WriteLine(minutesLeft + ":" + secondsLeft);
+    secondsLeft -= 1;
+
+    if (secondsLeft<0)
+    {
+        secondsLeft = 59;
+        minutesLeft -= 1;
+    }
+   
+}
+
+Console.BackgroundColor = ConsoleColor.Green;
+Console.WriteLine("Start song\n");
+
+totalMinutesSong /= 60;
+minutesLeft = totalMinutesSong;
+secondsLeft = totalSecondsSong;
+
+while (minutesLeft >= 0 && secondsLeft >= 0)
+{
+    Thread.Sleep(1000);
+    Console.Clear();
+    Console.WriteLine("Start Song\n");
+    Console.WriteLine(minutesLeft + ":" + secondsLeft);
+    secondsLeft -= 1;
+
+    if (secondsLeft < 0)
+    {
+        secondsLeft = 59;
+        minutesLeft -= 1;
+    }
+
+}
