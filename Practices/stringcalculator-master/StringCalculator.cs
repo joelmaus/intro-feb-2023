@@ -6,11 +6,17 @@ public class StringCalculator
 
     public int Add(string numbers)
     {
+        char delimiter = '\t';
+        if (numbers.StartsWith("//"))
+        {
+            delimiter = numbers[2];
+        }
+
         string[] nums = { };
 
 
         if (numbers != "")
-            nums = numbers.Split(',','\n');
+            nums = numbers.Split(',','\n',delimiter,'/');
         if (nums.Length == 0)
             return 0;
         else
@@ -19,8 +25,11 @@ public class StringCalculator
             int numberAsInt = 0;
             foreach(string number in nums)
             {
-                numberAsInt = int.Parse(number);
-                sum += numberAsInt;
+                if (number != "")
+                {
+                    numberAsInt = int.Parse(number);
+                    sum += numberAsInt;
+                }
             }
             return sum;
         }
