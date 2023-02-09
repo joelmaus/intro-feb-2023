@@ -1,16 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Banking.UnitTests
+﻿namespace Banking.UnitTests;
+public class DummyBonusCalculator : ICanCalculateAccountBonuses
 {
-    public class DummyBonusCalculator : ICanCalculateAccountBonuses
+    public decimal GetDepositBonusFor(decimal balance, decimal amountToDeposit)
     {
-        public decimal GetDepositBonusFor(decimal balance, decimal amountToDeposit)
-        {
-            throw new NotImplementedException();
-        }
+        return 0;
     }
 }
+
+
+
+//public class StubbedBonusCalculator : ICanCalculateAccountBonuses
+//{
+//    public decimal GetDepositBonusFor(decimal balance, decimal amountToDeposit)
+//    {
+//        if(balance == 5000M && amountToDeposit == 118.32M)
+//        {
+//            return 42.18M;
+//        } else
+//        {
+//            return 0;
+//        }
+//    }
+//}

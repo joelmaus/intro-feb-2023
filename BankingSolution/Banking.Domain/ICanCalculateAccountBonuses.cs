@@ -1,8 +1,7 @@
-﻿namespace Banking.Domain
+﻿namespace Banking.Domain;
+
+// A Job description. Any class that implements this interface is promising it "Can Do" this job description
+public interface ICanCalculateAccountBonuses
 {
-    //A job description. Any class that implements thsi interface is promising it "can do" this job description
-    public interface ICanCalculateAccountBonuses
-    {
-        decimal GetDepositBonusFor(decimal balance, decimal amountToDeposit);
-    }
+    decimal GetDepositBonusFor(decimal balance, decimal amountToDeposit);
 }

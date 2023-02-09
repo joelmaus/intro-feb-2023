@@ -1,35 +1,47 @@
-﻿namespace Banking.Domain
+﻿namespace Banking.Domain;
+
+public class BankAccount
 {
-    public class BankAccount
+    private decimal _balance = 5000M; // State - "Fields" variable.
+    private ICanCalculateAccountBonuses _bonusCalculator;
+
+    // Constructors are for REQUIRED DEPENDENCIES when creating a class.
+    public BankAccount(ICanCalculateAccountBonuses bonusCalculator)
     {
-        private decimal _balance = 5000M;
-        private ICanCalculateAccountBonuses _bonusCalculator;
+        _bonusCalculator = bonusCalculator;
+    }
 
-        public BankAccount(ICanCalculateAccountBonuses bonusCalculator)
+    public void Deposit(decimal amountToDeposit)
+    {
+        // Write the code you wish you had. (WTCYWYH)
+        decimal bonus = _bonusCalculator.GetDepositBonusFor(_balance, amountToDeposit);
+        _balance += amountToDeposit + bonus;
+    }
+
+    public decimal GetBalance()
+    {
+        return _balance;
+    }
+
+    public void Withdraw(decimal amountToWithdraw)
+    {
+        if (NotOverdraft(amountToWithdraw))
         {
-            _bonusCalculator = bonusCalculator;
+            _balance -= amountToWithdraw;
+            // Write the code you wish you had
+            //  _notifier.CheckForRequiredNotification(this, amountToWithdraw);
+        }
+        else
+        {
+            throw new AccountOverdraftException();
         }
 
-        public virtual void Deposit(decimal amountToDeposit)
-        {
-            decimal bonus = _bonusCalculator.GetDepositBonusFor(_balance, amountToDeposit);
-            _balance += amountToDeposit + bonus;
-        }
+    }
 
-        public decimal GetBalance()
-        {
-            return _balance;
-        }
 
-        public void Withdraw(decimal amountToWithdraw)
-        {
-            if (NotOverdraft(amountToWithdraw))
-                _balance -= amountToWithdraw;
-        }
-
-        private bool NotOverdraft(decimal amountToWithdraw)
-        {
-            return _balance >= amountToWithdraw;
-        }
+    // "Never type private, always refactor to it" - Corey Haines.
+    private bool NotOverdraft(decimal amountToWithdraw)
+    {
+        return _balance >= amountToWithdraw;
     }
 }
