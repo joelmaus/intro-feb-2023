@@ -12,7 +12,7 @@ namespace Banking.UnitTests
         [Fact]
         public void BonusAppliedToDeposit()
         {
-            var account = new BankAccount();
+            var account = new GoldBankAccount();
             var openingBalance = account.GetBalance();
             var amountToDeposit = 100M;
 
