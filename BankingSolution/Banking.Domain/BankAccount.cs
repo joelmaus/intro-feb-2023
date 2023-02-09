@@ -3,9 +3,11 @@
     public class BankAccount
     {
         private decimal _balance = 5000M;
+        private ICanCalculateAccountBonuses _bonusCalculator;
         public virtual void Deposit(decimal amountToDeposit)
         {
-            _balance += amountToDeposit;
+            decimal bonus = _bonusCalculator.GetDepositBonusFor(_balance, amountToDeposit);
+            _balance += amountToDeposit + bonus;
         }
 
         public decimal GetBalance()
