@@ -9,7 +9,7 @@ namespace Banking.UnitTests;
         public void NewAccountsHaveTheCorrectOpeningBalance()
         {
             //given I have new bank account
-            var accounts = new BankAccount();
+            var accounts = new BankAccount(new DummyBonusCalculator());
 
             //when i ask that account for its balance
             decimal openingBalance = accounts.GetBalance();
