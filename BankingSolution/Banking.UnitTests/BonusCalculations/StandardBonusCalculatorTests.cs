@@ -1,40 +1,53 @@
-﻿using Banking.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Banking.UnitTests.BonusCalculations
+﻿namespace Banking.UnitTests.BonusCalculations;
+public class StandardBonusCalculatorTestsDuringBusinessHours
 {
-    public class StandardBonusCalculatorTests
+    private StandardBonusCalculator _calculator;
+    public StandardBonusCalculatorTestsDuringBusinessHours()
     {
+        var stubbedClock = new Mock<IProvideTheBusinessClock>();
+        stubbedClock.Setup(c => c.IsDuringBusinessHours()).Returns(true);
+        _calculator = new StandardBonusCalculator(stubbedClock.Object);
+    }
+    // 1. Deposits under the cutoff amount get no bonus. (5000)
+    [Fact]
+    public void UnderCutoffGetNoBonus()
+    {
+        var bonus = _calculator.GetDepositBonusFor(4999.99M, 100);
+        Assert.Equal(0, bonus);
+    }
+    [Fact]
+    public void AtCutoffGetsBonus()
+    {
+        var bonus = _calculator.GetDepositBonusFor(5000M, 100);
+        Assert.Equal(10, bonus);
+    }
+    // 2. Deposits with 5000+ during Business Hours get a bonus.
+    // 3. Deposits with 5000+ outside of Business Hours get no bonus.
+
+
+    public class StandardBonusCalculatorOutsideBusinessHours
+    {
+        private StandardBonusCalculator _calculator;
+        public StandardBonusCalculatorOutsideBusinessHours()
+        {
+            var stubbedClock = new Mock<IProvideTheBusinessClock>();
+            stubbedClock.Setup(c => c.IsDuringBusinessHours()).Returns(false);
+            _calculator = new StandardBonusCalculator(stubbedClock.Object);
+        }
+        // 1. Deposits under the cutoff amount get no bonus. (5000)
         [Fact]
-        //deposits under 5000 get no bonus
-        //deposits 5000+ during business hours get bonus
-        //deposits with 5000+ outside business hours no bonus
         public void UnderCutoffGetNoBonus()
         {
-            ICanCalculateAccountBonuses calculator = new StandardBonusCalculator();
-
-            var bonus = calculator.GetDepositBonusFor(4999.99M, 100);
-
+            var bonus = _calculator.GetDepositBonusFor(4999.99M, 100);
             Assert.Equal(0, bonus);
         }
-
         [Fact]
-        //deposits under 5000 get no bonus
-        //deposits 5000+ during business hours get bonus
-        //deposits with 5000+ outside business hours no bonus
-        public void AtCutoffGetNoBonus()
+        public void AtCutoffGetsNoBonus()
         {
-            ICanCalculateAccountBonuses calculator = new StandardBonusCalculator();
-
-            var bonus = calculator.GetDepositBonusFor(5000M, 100);
-
-            Assert.Equal(10, bonus);
+            var bonus = _calculator.GetDepositBonusFor(5000M, 100);
+            Assert.Equal(0, bonus);
         }
-
-
     }
 }
+
+
