@@ -12,7 +12,7 @@
             {
                 bonus = amountToDeposit * .10M;
             }
-            _balance += amountToDeposit;
+            _balance += amountToDeposit + bonus;
         }
 
         public decimal GetBalance()
