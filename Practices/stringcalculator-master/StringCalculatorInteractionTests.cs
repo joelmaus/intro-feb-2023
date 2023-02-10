@@ -17,7 +17,8 @@ public class StringCalculatorInteractionTests
     {
         // Given
         var mockedLogger = new Mock<ILogger>();
-        var calculator = new StringCalculator(mockedLogger.Object, new Mock <IWebService>().Object); // NEED SOMETHING HERE
+        var mockedWebService = new Mock<IWebService>();
+        var calculator = new StringCalculator(mockedLogger.Object, mockedWebService.Object); // NEED SOMETHING HERE
 
         // When
         calculator.Add(numbers);
@@ -26,8 +27,10 @@ public class StringCalculatorInteractionTests
         // I need to verify (assert) that the logger was called with the expected value!
         mockedLogger.Verify(logger => logger.Write(expected), Times.Once);
     }
-    [Fact]
-    public void WhenLoggerBlowsUPTheWebServiceIsCalled()
+    [Theory]
+    [InlineData("Blammo!")]
+    [InlineData("Taco Bell")]
+    public void WhenLoggerBlowsUPTheWebServiceIsCalled(string expected)
     {
         //given
         var stubbedLogger = new Mock<ILogger>();
