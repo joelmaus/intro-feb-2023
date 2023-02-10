@@ -26,4 +26,18 @@ public class StringCalculatorInteractionTests
         // I need to verify (assert) that the logger was called with the expected value!
         mockedLogger.Verify(logger => logger.Write(expected), Times.Once);
     }
+    [Fact]
+    public void WhenLoggerBlowsUPTheWebServiceIsCalled()
+    {
+        //given
+        var stubbedLogger = new Mock<ILogger>();
+        stubbedLogger.Setup(m => m.Write(It.IsAny<string>())).Throws(new LoggerException("Blammo!"));
+        var calculator = new StringCalculator(stubbedLogger.Object); ;
+
+        //when
+        calculator.Add("1");
+
+        //then
+
+    }
 }

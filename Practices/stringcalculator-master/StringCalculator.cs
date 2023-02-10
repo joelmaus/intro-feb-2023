@@ -36,3 +36,12 @@ public interface ILogger
 {
     void Write(string message);
 }
+
+public class LoggerException : ApplicationException
+{
+    public string Message { get; private set; } = "";
+    public LoggerException(string message)
+    {
+        Message = message;
+    }
+}
