@@ -3,36 +3,36 @@ namespace StringCalculator;
 
 public class StringCalculator
 {
+    private ILogger _logger;
+
+    public StringCalculator(ILogger logger)
+    {
+        _logger = logger;
+    }
 
     public int Add(string numbers)
     {
-        char delimiter = '\t';
-        if (numbers.StartsWith("//"))
+        int answer = 0;
+        if (numbers == "")
         {
-            delimiter = numbers[2];
+
+            answer = 0;
         }
-
-        string[] nums = { };
-
-
-        if (numbers != "")
-            nums = numbers.Split(',','\n',delimiter,'/');
-        if (nums.Length == 0)
-            return 0;
         else
         {
-            int sum = 0;
-            int numberAsInt = 0;
-            foreach(string number in nums)
-            {
-                if (number != "")
-                {
-                    numberAsInt = int.Parse(number);
-                    sum += numberAsInt;
-                }
-            }
-            return sum;
+            answer = numbers.Split(',', '\n')
+                .Select(int.Parse)
+                .Sum();
         }
-       
+        // WTCYWYH
+        _logger.Write(answer.ToString());
+
+
+        return answer;
     }
+}
+
+public interface ILogger
+{
+    void Write(string message);
 }
