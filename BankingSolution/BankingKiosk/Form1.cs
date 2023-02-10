@@ -14,12 +14,16 @@ namespace BankingKiosk
 
         private void depositButton_Click(object sender, EventArgs e)
         {
-
+            var amount = decimal.Parse(amountInput.Text);
+            _account.Deposit(amount);
+            this.Text = $"You have a balance of {_account.GetBalance():c} Currently";
         }
 
         private void withdrawButton_Click(object sender, EventArgs e)
         {
-
+            var amount = decimal.Parse(amountInput.Text);
+            _account.Withdraw(amount);
+            this.Text = $"You have a balance of {_account.GetBalance():c} Currently";
         }
     }
 }
