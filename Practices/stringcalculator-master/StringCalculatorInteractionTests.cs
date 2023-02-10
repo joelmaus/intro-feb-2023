@@ -17,7 +17,7 @@ public class StringCalculatorInteractionTests
     {
         // Given
         var mockedLogger = new Mock<ILogger>();
-        var calculator = new StringCalculator(mockedLogger.Object); // NEED SOMETHING HERE
+        var calculator = new StringCalculator(mockedLogger.Object, new Mock <IWebService>().Object); // NEED SOMETHING HERE
 
         // When
         calculator.Add(numbers);
@@ -32,12 +32,14 @@ public class StringCalculatorInteractionTests
         //given
         var stubbedLogger = new Mock<ILogger>();
         stubbedLogger.Setup(m => m.Write(It.IsAny<string>())).Throws(new LoggerException("Blammo!"));
-        var calculator = new StringCalculator(stubbedLogger.Object); ;
+        var mockedWebService = new Mock<IWebService>();
+        var calculator = new StringCalculator(stubbedLogger.Object, mockedWebService.Object); ;
 
         //when
         calculator.Add("1");
 
         //then
+        mockedWebService.Verify(ws => ws.NotifyOfFailedLogging("Blammo!"));
 
     }
 }
