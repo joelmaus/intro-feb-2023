@@ -21,5 +21,17 @@ namespace LearningResourcesApi.IntegrationTests
             Assert.Equal("All Good", responseMessage.Message);
             Assert.Equal("555 555-5555", responseMessage.Contact);
         }
+
+        [Fact]
+        public async Task TheContactIsAPhoneNumberDuringBusinessHours()
+        {
+            await using var host = await AlbaHost.For<Program>(); var response = await host.Scenario(api => // Integration test - usually has many steps.
+            {
+                api.Get.Url("/status");
+            }); var responseMessage = response.ReadAsJson<GetStatusResponse>();
+            Assert.NotNull(responseMessage);
+            Assert.Equal("All Good", responseMessage.Message);
+            Assert.Equal("555 555-5555", responseMessage.Contact);
+        }
     }
 }
