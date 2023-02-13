@@ -9,13 +9,13 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class ShoppingListComponent {
 
   form = new FormGroup({
-    item: new FormControl<string>('', { nonNullable: true})
+    item: new FormControl<string>('', { nonNullable: true })
   });
   // state - data
   items: ShoppingItem[] = [
-    { description: 'Beer', purchased: false},
-    { description: 'Buns', purchased: false},
-    { description: 'Eggs', purchased: true}
+    { description: 'Beer', purchased: false },
+    { description: 'Buns', purchased: false },
+    { description: 'Eggs', purchased: true }
   ];
 
 
@@ -27,14 +27,14 @@ export class ShoppingListComponent {
     return this.items.filter(item => item.purchased).length > 0;
   }
   // behavior - methods
-  markPurchased(item:ShoppingItem) {
+  markPurchased(item: ShoppingItem) {
     item.purchased = true;
   }
 
   addItem() {
-   
+
     const description = this.form.controls.item.value;
-    const newItem:ShoppingItem = {
+    const newItem: ShoppingItem = {
       description: description,
       purchased: false
     }
@@ -45,6 +45,6 @@ export class ShoppingListComponent {
 }
 
 type ShoppingItem = {
-  description:string,
+  description: string,
   purchased: boolean
 }
