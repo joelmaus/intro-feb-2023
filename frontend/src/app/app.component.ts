@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'Learning Resource Application';
+  subtitle = 'Angular is rad!';
+
+  embiggenate(){
+    this.subtitle = this.subtitle.toUpperCase();
+  }
 }
