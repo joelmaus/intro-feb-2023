@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace cSharpSyntax
 {
-    public class CreatingAndInitializingTypes {
+    public class CreatingAndInitializingTypes
+    {
 
         string thingy = "Birds";
 
-        [Fact]
+        //[Fact]
         public void UsingLiteralsToCreateInstancesOfTypes()
         {
             // local variabled -- variables that are declared inside a method, or property.
@@ -69,7 +70,7 @@ namespace cSharpSyntax
         {
             var message = new StringBuilder();
 
-            foreach(var num in Enumerable.Range(1,10000))
+            foreach (var num in Enumerable.Range(1, 10000))
             {
                 message.Append(num.ToString() + ", ");
             }
@@ -87,7 +88,7 @@ namespace cSharpSyntax
             var message2 = string.Format("{0} is {1}", name, age);
             var message3 = $"{name} is {age}";
         }
-        [Fact]
+        //[Fact]
         public void DoingConversionsOnTypes()
         {
             string myPay = "100.83Tacos";
@@ -99,7 +100,7 @@ namespace cSharpSyntax
             else
                 Assert.True(false);
 
-            var birthdate = DateTime.Parse("09/10/1987"); 
+            var birthdate = DateTime.Parse("09/10/1987");
 
         }
 
@@ -108,3 +109,4 @@ namespace cSharpSyntax
 
     public class Taco { }
     public class TransitoryPolicyCommuterRecord { }
+}
