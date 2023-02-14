@@ -6,6 +6,13 @@
         <p>This application was created for the Intro to Programming Class.</p>
     </div>
     <div class="card-footer">
-        <button class="btn btn-primary">See The API Status</button>
+        <button (click)="getStatus()"
+                class="btn btn-primary">See The API Status</button>
+
+        <div *ngIf="(responseFromServer$ | async)  as response">
+            <p>The status is {{response.message }}</p>
+            <p>Contact for help: {{response.contact }}</p>
+        </div>
+
     </div>
 </div>
