@@ -4,6 +4,7 @@ import { AboutComponent } from './components/about/about.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 
+
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -16,8 +17,12 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: '**', // <-- Angular syntax that matches ANYTHING
+    redirectTo: 'dashboard'
   }
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
