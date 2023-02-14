@@ -4,7 +4,7 @@ namespace LearningResourcesApi.Models
 {
     public record GetResourcesResponse
     {
-
+        public List<GetResourceItem> Items { get; init; } = new();
     }
     public record GetResourceItem
     {
