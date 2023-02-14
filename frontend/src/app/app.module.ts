@@ -8,7 +8,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutComponent } from './components/about/about.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { StatusDataService } from './services/status-data.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,9 +22,10 @@ import { HttpClientModule } from '@angular/common/http'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule// -> Has a service it provided call the HttpClient
   ],
-  providers: [],
+  providers: [StatusDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

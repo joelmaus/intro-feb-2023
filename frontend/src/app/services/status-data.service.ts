@@ -3,11 +3,11 @@ import { Injectable } from "@angular/core";
 import { StatusResponseModel } from "../models/status.models";
 
 @Injectable()
-export class StatusDataServicee {
+export class StatusDataService {
 
     constructor(private client: HttpClient) { }
 
     getStatus() {
-        return this.client.get<>('http://localhost:1337/status');
+        return this.client.get<StatusResponseModel>('http://localhost:1337/status');
     }
 }
