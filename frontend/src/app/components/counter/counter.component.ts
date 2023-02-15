@@ -19,4 +19,7 @@ export class CounterComponent {
     decrement() {
         this.store.dispatch({ type: 'They done clicked the decrement button' })
     }
+    reset() {
+        this.store.dispatch({ type: 'They done clicked the reset button' })
+    }
 }
