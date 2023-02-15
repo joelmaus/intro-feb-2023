@@ -10,8 +10,14 @@ import { counterEvents } from 'src/app/state/actions/counter.actions';
 })
 export class CounterComponent {
 
+
+
     current$ = this.store.select(selectCounterCurrent)
-    constructor(private store: Store) { }
+    constructor(private store: Store) {
+
+    }
+
+
 
     increment() {
         this.store.dispatch(counterEvents.countIncremented())
