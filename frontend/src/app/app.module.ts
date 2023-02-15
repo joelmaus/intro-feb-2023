@@ -14,7 +14,10 @@ import { CounterComponent } from './components/counter/counter.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { CounterPrefsComponent } from "./components/counter-prefs/counter-prefs.component";
+import { CounterPrefsComponent } from './components/counter-prefs/counter-prefs.component';
+import { EffectsModule } from '@ngrx/effects';
+import { CounterEffects } from './state/effects/counter.effects';
+
 
 @NgModule({
   declarations: [
@@ -25,17 +28,17 @@ import { CounterPrefsComponent } from "./components/counter-prefs/counter-prefs.
     NavigationComponent,
     CounterComponent,
     CounterPrefsComponent
-
   ],
-  providers: [StatusDataService],
-  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot(reducers),
-    StoreDevtoolsModule.instrument()
-  ]
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([CounterEffects])
+  ],
+  providers: [StatusDataService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
