@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { selectCounterCurrent } from 'src/app/state';
 
 @Component({
     selector: 'app-counter',
@@ -7,15 +8,15 @@ import { Store } from '@ngrx/store';
     styleUrls: ['./counter.component.css']
 })
 export class CounterComponent {
-    current = 0;
-    //current$ = this.store.select()
+
+    current$ = this.store.select(selectCounterCurrent)
     constructor(private store: Store) { }
 
     increment() {
-        this.current += 1;
+        this.store.dispatch({ type: 'They clicked the increment button' })
     }
 
     decrement() {
-        this.current -= 1;
+        this.store.dispatch({ type: 'They done clicked the decrement button' })
     }
 }
