@@ -10,6 +10,7 @@ import { AboutComponent } from './components/about/about.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StatusDataService } from './services/status-data.service';
+import { CounterComponent } from './components/counter/counter.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { StatusDataService } from './services/status-data.service';
     ShoppingListComponent,
     DashboardComponent,
     AboutComponent,
-    NavigationComponent
+    NavigationComponent,
+    CounterComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ import { StatusDataService } from './services/status-data.service';
     ReactiveFormsModule,
     HttpClientModule// -> Has a service it provided call the HttpClient
   ],
-  providers: [StatusDataService],
+  providers: [StatusDataService], // API -> builder.Services.AddSingleton
   bootstrap: [AppComponent]
 })
 export class AppModule { }
