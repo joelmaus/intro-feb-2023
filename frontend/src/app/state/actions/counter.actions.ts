@@ -7,7 +7,8 @@ export const counterEvents = createActionGroup({
         'Count Incremented': emptyProps(),
         'Count Decremented': emptyProps(),
         'Count Reset': emptyProps(),
-        'Count By Set': props<{ by: CountByValues }>()
+        'Count By Set': props<{ by: CountByValues }>(),
+        'Counter Entered': emptyProps()
     }
 })
 
