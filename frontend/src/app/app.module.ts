@@ -17,6 +17,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CounterPrefsComponent } from './components/counter-prefs/counter-prefs.component';
 import { EffectsModule } from '@ngrx/effects';
 import { CounterEffects } from './state/effects/counter.effects';
+import { ApplicationEffects } from './state/effects/app.effects';
 
 
 @NgModule({
