@@ -2,8 +2,10 @@ import { createActionGroup, props } from "@ngrx/store";
 import { ItemEntity } from "../reducers/items.reducer";
 
 export const itemsEvents = createActionGroup({
-    source: 'Items Evens',
-    events: {}
+    source: 'Items Events',
+    events: {
+        created: props<{ payload: ItemCreate }>(),
+    }
 })
 
 
@@ -14,4 +16,4 @@ export const itemsDocuments = createActionGroup({
     }
 })
 
-export type itemCreate = Omit<ItemEntity, 'id'>;
+export type ItemCreate = Omit<ItemEntity, 'id'>;

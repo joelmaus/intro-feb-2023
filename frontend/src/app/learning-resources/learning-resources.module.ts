@@ -9,6 +9,7 @@ import { featureName, reducers } from './state';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { ItemsEffects } from './state/effects/items.effects';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
@@ -47,7 +48,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(featureName, reducers),
-    EffectsModule.forFeature([ItemsEffects])
+    EffectsModule.forFeature([ItemsEffects]),
+    ReactiveFormsModule
   ]
 })
 export class LearningResourcesModule { }
