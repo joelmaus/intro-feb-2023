@@ -13,3 +13,5 @@ export const itemsDocuments = createActionGroup({
         items: props<{ payload: ItemEntity[] }>()
     }
 })
+
+export type itemCreate = Omit<ItemEntity, 'id'>;
