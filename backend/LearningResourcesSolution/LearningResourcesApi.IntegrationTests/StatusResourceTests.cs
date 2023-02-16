@@ -1,5 +1,7 @@
 ﻿
 
+using LearningResourcesApi.Controllers;
+
 namespace LearningResourcesApi.IntegrationTests
 {
     public class StatusResourceTests

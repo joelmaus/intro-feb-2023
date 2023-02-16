@@ -2,6 +2,8 @@
 using LearningResourcesApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
 namespace LearningResourcesApi.Controllers;
 
@@ -12,6 +14,24 @@ public class ResourcesController : ControllerBase
     public ResourcesController(LearningResourcesDataContext context)
     {
         _context = context;
+    }
+
+    [HttpPost("/resources")]
+    public async Task<ActionResult> AddItem([FromBody] CreateResourceItem request)
+    {
+        if (ModelState.IsValid == false)
+        {
+            return BadRequest(ModelState);
+        }
+        // tomorrow - ADD IT TO THE DATABASE
+        var response = new GetResourceItem
+        {
+            Id = Guid.NewGuid().ToString(),
+            Description = request.Description,
+            Link = request.Link,
+            Type = request.Type,
+        };
+        return Ok(response);
     }
 
     [HttpGet("/resources")]
